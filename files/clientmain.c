@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   clientmain.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 14:51:31 by mosakura          #+#    #+#             */
-/*   Updated: 2025/11/23 15:00:23 by mosakura         ###   ########.fr       */
+/*   Created: 2025/11/23 18:18:25 by mosakura          #+#    #+#             */
+/*   Updated: 2025/11/23 19:00:10 by mosakura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "minitalk.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <signal.h>
+int	main(int argc, char *argv[])
+{
 
-int	ft_printf(const char *str, ...);
-
-#endif
+	return (EXIT_SUCCESS);
+}

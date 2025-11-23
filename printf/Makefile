@@ -1,21 +1,21 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    MAKEFILE                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/23 14:51:35 by mosakura          #+#    #+#              #
-#    Updated: 2025/11/23 19:04:29 by mosakura         ###   ########.fr        #
+#    Created: 2025/10/24 23:09:13 by mosakura          #+#    #+#              #
+#    Updated: 2025/11/12 00:52:14 by mosakura         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= client
+NAME		= libftprintf.a
 
-SRCS		= ./printf/libftprintf.a \
-				./files/clientmain.c \
-				./files/servermain.c \
-				./files/minitalk.c
+SRCS		= ft_printf.c \
+			  print.c \
+			  print2.c \
+			  utils.c
 
 OBJS		= $(SRCS:.c=.o)
 

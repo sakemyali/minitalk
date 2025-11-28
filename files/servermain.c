@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   servermain.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:17:11 by mosakura          #+#    #+#             */
-/*   Updated: 2025/11/28 13:10:54 by mvrm             ###   ########.fr       */
+/*   Updated: 2025/11/28 14:41:14 by mosakura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,40 @@
 
 void	handler(int sig, siginfo_t *info, void *ucontext)
 {
-	(void)ucontext;
-	static int bit;
-	static char c;
+	static int		bit;
+	static char		c;
+	static pid_t	server;
 
+	if (info->si_pid)
+		server = info->si_pid;
 	if (SIGUSR1 == sig)
-		
+		c |= (0x80 >> bit);
+	else if (SIGUSR2 == sig)
+		c &= ~(0x80 >> bit);
+	bit++;
+	if (CHAR_BIT == bit)
+	{
+		bit = 0;
+		if ('\0' == c)
+		{
+			ft_printf("\n");
+			k_kill(server, SIGUSR2);
+			c = 0;
+			return ;
+		}
+		ft_printf("%c", c);
+		c = 0;
+	}
+	k_kill(server, SIGUSR1);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
+	if (argc != 1)
+	{
+		ft_printf("No need for arguments.");
+		return (EXIT_FAILURE);
+	}
 	ft_printf("Server's PID is: %d\n", getpid());
 	s_signal(SIGUSR1, handler, true);
 	s_signal(SIGUSR2, handler, true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:51:31 by mosakura          #+#    #+#             */
-/*   Updated: 2025/11/23 18:53:36 by mosakura         ###   ########.fr       */
+/*   Updated: 2025/11/27 07:05:26 by mvrm             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 # include <unistd.h>
 # include <signal.h>
 # include <stdbool.h>
+# include <limits.h>
 
 int	ft_printf(const char *str, ...);
+void s_signal(int signo, void *handler, bool use_siginfo);
+int	ft_atoi(const char *nptr);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 19:00:31 by mosakura          #+#    #+#             */
-/*   Updated: 2025/11/28 14:41:34 by mosakura         ###   ########.fr       */
+/*   Updated: 2025/12/02 09:36:41 by mvrm             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void s_signal(int signo, void *handler, bool use_siginfo)
     }
 }
 
-void    k_kill(__pid_t pid, int signum)
+void    k_kill(pid_t pid, int signum)
 {
     if (kill(pid, signum) < 0)
     {
@@ -41,9 +41,3 @@ void    k_kill(__pid_t pid, int signum)
         exit(EXIT_FAILURE);
     }
 }
-
-void
-
-
-
-//0b10000000

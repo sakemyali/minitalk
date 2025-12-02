@@ -3,40 +3,45 @@
 #                                                         :::      ::::::::    #
 #    MAKEFILE                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/23 14:51:35 by mosakura          #+#    #+#              #
-#    Updated: 2025/11/23 19:04:29 by mosakura         ###   ########.fr        #
+#    Updated: 2025/12/02 12:42:33 by mvrm             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= client
+SRCS_SERVER = ./files/server.c ./files/utils.c ./files/minitalk.c
+SRCS_CLIENT = ./files/client.c ./files/utils.c ./files/minitalk.c
 
-SRCS		= ./printf/libftprintf.a \
-				./files/clientmain.c \
-				./files/servermain.c \
-				./files/minitalk.c
+OBJS_SERVER = $(SRCS_SERVER:.c=.o)
+OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 
-OBJS		= $(SRCS:.c=.o)
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -I ./files
 
-CC			= cc
+all: server client
 
-FLAGS		= -Wall -Werror -Wextra -I ./
+bonus: server client
+
+server: $(OBJS_SERVER) printf
+	$(CC) -o $@ $(OBJS_SERVER) -Lprintf -lprintf
+
+client: $(OBJS_CLIENT) printf
+	$(CC) -o $@ $(OBJS_CLIENT) -Lprintf -lprintf
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
-$(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-
-all: $(NAME)
+printf:
+	make -C printf
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS_SERVER) $(OBJS_CLIENT)
+	make -C printf clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f server client ./printf/printf.a
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus printf clean fclean re

@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 23:09:13 by mosakura          #+#    #+#              #
-#    Updated: 2025/11/12 00:52:14 by mosakura         ###   ########.fr        #
+#    Updated: 2025/12/02 12:43:15 by mvrm             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
+NAME		= libprintf.a
 
 SRCS		= ft_printf.c \
 			  print.c \

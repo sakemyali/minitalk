@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   servermain.c                                       :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:17:11 by mosakura          #+#    #+#             */
-/*   Updated: 2025/11/28 14:41:14 by mosakura         ###   ########.fr       */
+/*   Updated: 2025/12/02 12:39:33 by mvrm             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 	static char		c;
 	static pid_t	server;
 
+	(void)ucontext;
 	if (info->si_pid)
 		server = info->si_pid;
 	if (SIGUSR1 == sig)
@@ -41,8 +42,9 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 	k_kill(server, SIGUSR1);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
+	(void)argv;
 	if (argc != 1)
 	{
 		ft_printf("No need for arguments.");

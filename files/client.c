@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clientmain.c                                       :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:18:25 by mosakura          #+#    #+#             */
-/*   Updated: 2025/11/28 14:28:00 by mosakura         ###   ########.fr       */
+/*   Updated: 2025/12/02 12:44:08 by mvrm             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ volatile sig_atomic_t	server = 0;
 
 static void	start_handler(int sig)
 {
+	(void)sig;
 	server = 1;
 }
 
 static void	end_handler(int sig)
 {
+	(void)sig;
 	ft_printf("\n Received.\n");
 	exit(EXIT_SUCCESS);
 }

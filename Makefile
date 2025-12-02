@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    MAKEFILE                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+         #
+#    By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/23 14:51:35 by mosakura          #+#    #+#              #
-#    Updated: 2025/12/02 12:42:33 by mvrm             ###   ########.fr        #
+#    Updated: 2025/12/02 13:12:19 by mosakura         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ clean:
 	make -C printf clean
 
 fclean: clean
-	rm -f server client ./printf/printf.a
+	rm -f server client ./printf/libprintf.a
 
 re: fclean all
 

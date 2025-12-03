@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:18:25 by mosakura          #+#    #+#             */
-/*   Updated: 2025/12/02 12:44:08 by mvrm             ###   ########.fr       */
+/*   Updated: 2025/12/04 01:29:30 by mosakura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-volatile sig_atomic_t	server = 0;
+volatile sig_atomic_t	g_server = 0;
 
 static void	start_handler(int sig)
 {
 	(void)sig;
-	server = 1;
+	g_server = 1;
 }
 
 static void	end_handler(int sig)
 {
 	(void)sig;
-	ft_printf("\n Received.\n");
+	write(STDOUT_FILENO, "Success signal received from server.\n", 37);
 	exit(EXIT_SUCCESS);
 }
 
 static void	s_send(char c, pid_t pid)
 {
-	int bit;
+	int	bit;
 
 	bit = 0;
 	while (bit < CHAR_BIT)
@@ -39,9 +39,9 @@ static void	s_send(char c, pid_t pid)
 		else
 			kill(pid, SIGUSR2);
 		bit++;
-		while (server == 0)
+		while (g_server == 0)
 			usleep(42);
-		server = 0;
+		g_server = 0;
 	}
 }
 
@@ -52,10 +52,16 @@ int	main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		ft_printf("Wrong usage.");
+		write(STDOUT_FILENO, "Error: Invalid format.\n\nUsage: ./client\
+			<server_pid> <message>\n", 73);
 		exit(EXIT_FAILURE);
 	}
 	server = ft_atoi(argv[1]);
+	if (server <= 0)
+	{
+		write(STDOUT_FILENO, "Invalid PID.\n", 13);
+		exit(EXIT_FAILURE);
+	}
 	content = argv[2];
 	s_signal(SIGUSR1, start_handler, false);
 	s_signal(SIGUSR2, end_handler, false);

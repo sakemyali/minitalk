@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/02 13:41:41 by mosakura          #+#    #+#             */
+/*   Updated: 2025/12/02 14:34:05 by mosakura         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 int	ft_atoi(const char *nptr)
@@ -27,4 +39,19 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (sign * ((int)res));
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*mod;
+
+	mod = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		mod[i] = (unsigned char)c;
+		i++;
+	}
+	return (s);
 }

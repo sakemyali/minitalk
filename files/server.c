@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvrm <mvrm@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mosakura <mosakura@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 18:17:11 by mosakura          #+#    #+#             */
-/*   Updated: 2025/12/02 12:39:33 by mvrm             ###   ########.fr       */
+/*   Updated: 2025/12/04 01:24:38 by mosakura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,14 @@ void	handler(int sig, siginfo_t *info, void *ucontext)
 		bit = 0;
 		if ('\0' == c)
 		{
-			ft_printf("\n");
-			k_kill(server, SIGUSR2);
+			k_kill(server, SIGUSR2, 1);
 			c = 0;
 			return ;
 		}
-		ft_printf("%c", c);
+		write(STDOUT_FILENO, &c, 1);
 		c = 0;
 	}
-	k_kill(server, SIGUSR1);
+	k_kill(server, SIGUSR1, 0);
 }
 
 int	main(int argc, char **argv)
@@ -47,7 +46,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (argc != 1)
 	{
-		ft_printf("No need for arguments.");
+		write(STDOUT_FILENO, "Error: Invalid format.\n\nUsage: ./server\n", 40);
 		return (EXIT_FAILURE);
 	}
 	ft_printf("Server's PID is: %d\n", getpid());
